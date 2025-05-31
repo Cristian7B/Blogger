@@ -1,0 +1,4 @@
+venv
+staticfiles/
+.env
+__pycache__/

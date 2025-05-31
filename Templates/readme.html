@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>README - Blogger</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/Styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Readme.css' %}">
+</head>
+<body>
+    <div class="allContainer">
+        <nav>
+            <ul class="leftContainer">
+                <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+                <li><a href="https://github.com" target="_blank">GitHub</a></li>
+            </ul>
+            <h3 class="centerContainer">Blogger</h3>
+            <ul class="rightContainer">
+                <li><a href="{% url 'post-list' %}">Lista</a></li>
+                <li><a href="{% url 'index' %}">Inicio</a></li>
+            </ul>
+        </nav>
+
+        <div class="readme-container">
+            <div class="readme-header">
+                <h1>README</h1>
+                <p>Documentación del proyecto</p>
+            </div>
+
+            <a href="{% url 'index' %}" class="back-button">
+                Volver al inicio
+            </a>
+
+            <div class="readme-content">
+                {{ content|safe }}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

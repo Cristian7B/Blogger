@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Posts - Blogger</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/Styles.css' %}">
+</head>
+<body>
+    <div class="allContainer">
+        <nav>
+            <ul class="leftContainer">
+                <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+                <li><a href="https://github.com" target="_blank">GitHub</a></li>
+            </ul>
+            <h3 class="centerContainer">Blogger</h3>
+            <ul class="rightContainer">
+                <li><a href="{% url 'post-list' %}">Lista</a></li>
+                <li><a href="{% url 'index' %}">Inicio</a></li>
+            </ul>
+        </nav>
+
+        <div class="posts-container">
+            <div class="posts-header">
+                <h1>Posts del Blog</h1>
+                <p>Explora artículos y documentación técnica</p>
+            </div>
+
+            {% if posts %}
+                {% for post in posts %}
+                    <article class="post-card" onclick="">
+                        <a href="{% url 'post-detail' pk=post.id %}" class="post-title">{{ post.title }}</a>
+                        
+                        <div class="post-meta">
+                            <div class="post-author">{{ post.autor|default:"Anónimo" }}</div>
+                            <div class="post-date">{{ post.created_at|date:"d/m/Y" }}</div>
+                        </div>
+
+                        <div class="post-excerpt">
+                            {{ post.content|truncatewords:30|striptags }}
+                        </div>
+
+                        <a href="{% url 'post-detail' pk=post.id %}" class="read-more">
+                            Leer más
+                        </a>
+                    </article>
+                {% endfor %}
+            {% else %}
+                <div class="no-posts">
+                    <h2>No hay posts disponibles</h2>
+                    <p>Aún no se han creado posts en el blog. ¡Sé el primero en crear contenido!</p>
+                    <a href="{% url 'index' %}" class="create-post-btn">
+                        ✍️ Crear primer post
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
