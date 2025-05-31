@@ -66,6 +66,3 @@ class ReadmeView(View):
             
         except Exception as e:
             return JsonResponse({"error": str(e)}, status=400)
-
-def index(request):
-    return render(request, 'index.html', {})
